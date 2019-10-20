@@ -34,20 +34,14 @@ namespace SmartMeter.Core
             //| col 2 is      | centered        |   $12 |
             //| zebra stripes | are neat        |    $1 |
 
+            throw new NotImplementedException();
+        }
 
-            StringBuilder sb = new StringBuilder();
+        private void InitHolidays(string holidayFileName)
+        {
+            _holidays = new Dictionary<DateTime, string>();
 
-            sb.AppendLine("| Day    | Sum  |  Description |");
-            sb.AppendLine("|: ---- :|---- :| ------------ |");
-
-            _measurements.Sort();
-
-            foreach (Day day in _measurements)
-            {
-                sb.AppendLine(day.GetMarkdownRow());
-            }
-
-            return sb.ToString();
+            throw new NotImplementedException();
         }
 
 
@@ -55,64 +49,7 @@ namespace SmartMeter.Core
         {
             _measurements = new List<Day>();
 
-            foreach (string inputFileName in inputFileNames)
-            {
-                IDictionary<DateTime, double> dailyMeasurements = new Dictionary<DateTime, double>();
-
-                string[] lines = File.ReadAllLines(Path.Combine(_inputFilePath, inputFileName), Encoding.UTF8);
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(";");
-                    DateTime timestamp = DateTime.Parse(parts[0]);
-                    double measurement = double.Parse(parts[1]);
-
-                    if(dailyMeasurements.ContainsKey(timestamp.Date))
-                    {
-                        dailyMeasurements[timestamp.Date] += measurement;
-                    } 
-                    else
-                    {
-                        dailyMeasurements[timestamp.Date] = measurement;
-                    }
-
-                    
-                }
-
-                foreach (KeyValuePair<DateTime, double> entry in dailyMeasurements)
-                {
-                    if (_holidays.ContainsKey(entry.Key))
-                    {
-                        _measurements.Add(
-                            new Holiday(
-                                entry.Key,
-                                _holidays[entry.Key],
-                                entry.Value));
-                    }
-                    else
-                    {
-                        _measurements.Add(
-                            new Day(
-                                entry.Key,
-                                entry.Value));
-                    }
-                }
-            }
-
-        }
-
-        private void InitHolidays(string holidayFileName)
-        {
-            _holidays = new Dictionary<DateTime, string>();
-
-            string[] lines = File.ReadAllLines(Path.Combine(_inputFilePath, holidayFileName), Encoding.UTF8);
-            foreach (string line in lines)
-            {
-                string[] parts = line.Split(";");
-                string holidayDescription = parts[0];
-                DateTime date = DateTime.Parse(parts[1]);
-
-                _holidays.Add(date, holidayDescription);
-            }
+            throw new NotImplementedException();
         }
 
     }
