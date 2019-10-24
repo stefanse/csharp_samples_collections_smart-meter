@@ -7,7 +7,7 @@ namespace Utils
     /// <summary>
     /// Hilfsmethoden für Files
     /// </summary>
-    public static class MyFile
+    public static class MyFile //ms
     {
         /// <summary>
         /// Sucht die Datei mit dem Namen ausgehend vom Arbeitsverzeichnis der Anwendung
